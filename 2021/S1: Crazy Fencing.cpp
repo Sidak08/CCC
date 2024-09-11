@@ -3,13 +3,14 @@
 #include <vector>
 using namespace std;
 
+// does not work with problem set 7 and 8 probs rounding error
 int main()
 {
     int num;
     cin >> num;
-    vector<long double> heights(num + 1);
-    vector<long double> widths(num);
-    long double sum = 0;
+    vector<double> heights(num + 1);
+    vector<double> widths(num);
+    double sum = 0;
 
     for (int i = 0; i < num + 1; i++)
     {
