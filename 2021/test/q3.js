@@ -123,6 +123,37 @@ const calcRemainingTime = (freindsList, center) => {
   return time;
 };
 
-console.log(calcRemainingTime(freindsList, calcTrueCenter(freindsList) + 2));
+const gradeintDecent = (friendsList, base) => {
+  // Calculate the current center and remaining time for -1 and +1 positions
+  const currentCenter = calcTrueCenter(friendsList);
+  const minsOne = calcRemainingTime(friendsList, currentCenter - 1);
+  const plusOne = calcRemainingTime(friendsList, currentCenter + 1);
 
-// console.log(centerPoint(freindsList), weightCenterPoint(freindsList));
+  console.log(
+    `Current base: ${base}, minsOne: ${minsOne}, plusOne: ${plusOne}`,
+  );
+
+  // Recursive descent if conditions are met
+  if (minsOne < base) {
+    console.log("Going to minsOne");
+    return gradeintDecent(friendsList, minsOne);
+  }
+  if (plusOne < base) {
+    console.log("Going to plusOne");
+    return gradeintDecent(friendsList, plusOne);
+  }
+
+  // Return the best value found
+  console.log(`Final base value: ${base}`);
+  return base;
+};
+
+// Initial call to the function
+console.log(
+  gradeintDecent(
+    freindsList,
+    calcRemainingTime(freindsList, calcTrueCenter(freindsList)),
+  ),
+);
+
+console.log(calcRemainingTime(freindsList, calcTrueCenter(freindsList) + 2));
