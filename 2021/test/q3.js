@@ -1,16 +1,3 @@
-const numOfFreinds = 2;
-// const freindsList = [
-//   {
-//     position: 10,
-//     speed: 4,
-//     r: 3,
-//   },
-//   {
-//     position: 20,
-//     speed: 4,
-//     r: 2,
-//   },
-// ];
 const freindsList = [
   {
     position: 6,
@@ -28,27 +15,54 @@ const freindsList = [
     r: 2,
   },
 ];
+// const freindsList = [
+//   {
+//     position: 0,
+//     speed: 10000,
+//     r: 0,
+//   },
+// ];
 
-const centerPoint = (freindsList) => {
-  let sum = 0;
-  for (let i = 0; i < freindsList.length; i++) {
-    sum += freindsList[i].position;
-  }
-  return Math.round(sum / numOfFreinds);
-};
-
-const weightCenterPoint = (friendsList) => {
+const weightCenterPoint = (freindsList) => {
   let weightedSum = 0;
   let totalWeight = 0;
 
-  for (let i = 0; i < friendsList.length; i++) {
-    const { position, speed } = friendsList[i];
+  for (let i = 0; i < freindsList.length; i++) {
+    const { position, speed } = freindsList[i];
     weightedSum += position * speed;
     totalWeight += speed;
   }
 
   // Calculate the weighted average and round to the nearest integer
   return Math.round(weightedSum / totalWeight);
+};
+
+const weightCalcTrueCenter = (freindsList) => {
+  const center = weightCenterPoint(freindsList);
+  let weightedDistanceSum = 0;
+  let totalWeight = 0;
+
+  for (let i = 0; i < freindsList.length; i++) {
+    const { position, speed, r } = freindsList[i];
+    const distance = Math.abs(position - center);
+
+    // Determine if the center is within the range of the current friend
+    if (
+      (position < center && position + r > center) ||
+      (position > center && position - r < center)
+    ) {
+      weightedDistanceSum += distance * speed;
+    } else if (position < center) {
+      weightedDistanceSum += (center - (position + r)) * speed;
+    } else if (position > center) {
+      weightedDistanceSum += (position - r - center) * speed;
+    }
+
+    totalWeight += speed;
+  }
+
+  // Calculate the weighted average distance and round to the nearest integer
+  return Math.round(weightedDistanceSum / totalWeight);
 };
 
 const calcTrueCenter = (freindsList) => {
@@ -69,34 +83,6 @@ const calcTrueCenter = (freindsList) => {
     }
   }
   return Math.round(distance / freindsList.length);
-};
-
-const weightCalcTrueCenter = (friendsList) => {
-  const center = weightCenterPoint(friendsList);
-  let weightedDistanceSum = 0;
-  let totalWeight = 0;
-
-  for (let i = 0; i < friendsList.length; i++) {
-    const { position, speed, r } = friendsList[i];
-    const distance = Math.abs(position - center);
-
-    // Determine if the center is within the range of the current friend
-    if (
-      (position < center && position + r > center) ||
-      (position > center && position - r < center)
-    ) {
-      weightedDistanceSum += distance * speed;
-    } else if (position < center) {
-      weightedDistanceSum += (center - (position + r)) * speed;
-    } else if (position > center) {
-      weightedDistanceSum += (position - r - center) * speed;
-    }
-
-    totalWeight += speed;
-  }
-
-  // Calculate the weighted average distance and round to the nearest integer
-  return Math.round(weightedDistanceSum / totalWeight);
 };
 
 const calcRemainingTime = (freindsList, center) => {
@@ -123,24 +109,23 @@ const calcRemainingTime = (freindsList, center) => {
   return time;
 };
 
-const gradeintDecent = (friendsList, base) => {
-  // Calculate the current center and remaining time for -1 and +1 positions
-  const currentCenter = calcTrueCenter(friendsList);
-  const minsOne = calcRemainingTime(friendsList, currentCenter - 1);
-  const plusOne = calcRemainingTime(friendsList, currentCenter + 1);
+const gradeintDecent = (freindsList, base, center) => {
+  const currentCenter = center;
+  const minsOne = calcRemainingTime(freindsList, currentCenter - 1);
+  const plusOne = calcRemainingTime(freindsList, currentCenter + 1);
 
   console.log(
-    `Current base: ${base}, minsOne: ${minsOne}, plusOne: ${plusOne}`,
+    `Current base: ${base}, minsOne: ${minsOne}, plusOne: ${plusOne}, center ${currentCenter}`,
   );
 
   // Recursive descent if conditions are met
   if (minsOne < base) {
-    console.log("Going to minsOne");
-    return gradeintDecent(friendsList, minsOne);
+    console.log("Going to minsOne", currentCenter - 1);
+    return gradeintDecent(freindsList, minsOne, currentCenter - 1);
   }
   if (plusOne < base) {
-    console.log("Going to plusOne");
-    return gradeintDecent(friendsList, plusOne);
+    console.log("Going to plusOne", currentCenter + 1);
+    return gradeintDecent(freindsList, plusOne, currentCenter + 1);
   }
 
   // Return the best value found
@@ -148,12 +133,10 @@ const gradeintDecent = (friendsList, base) => {
   return base;
 };
 
-// Initial call to the function
 console.log(
   gradeintDecent(
     freindsList,
     calcRemainingTime(freindsList, calcTrueCenter(freindsList)),
+    calcTrueCenter(freindsList),
   ),
 );
-
-console.log(calcRemainingTime(freindsList, calcTrueCenter(freindsList) + 2));
