@@ -3,22 +3,24 @@
 #define ll long long
 using namespace std;
 
-void incArry (vector<int> numArry) {
-    int counter = 0;
-    for (int i = 1; i < numArry.size(); i++){
+void incArry (vector<long long> numArry) {
+    long long counter = 0;
+    for (long long i = 1; i < numArry.size(); i++){
         if (numArry[i] < numArry[i - 1]){
-            counter -= numArry[i] - numArry[i - 1];
+            // cout << numArry[i - 1] << " " << numArry[i] << " " <<  numArry[i - 1] - numArry[i] << "\n";
+            counter += numArry[i - 1] - numArry[i];
+            numArry[i] = numArry[i - 1];
         }
     }
     cout << counter;
 }
 
 int main () {
-    int num;
+    long long num;
     cin >> num;
-    vector<int> inputArry(num);
-    for (int i = 0; i < num; i++) {
-        int num;
+    vector<long long> inputArry(num);
+    for (long long i = 0; i < num; i++) {
+        long long num;
         cin >> num;
         inputArry[i] = num;
     }
