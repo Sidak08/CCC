@@ -37,33 +37,33 @@ const weightCenterPoint = (freindsList) => {
   return Math.round(weightedSum / totalWeight);
 };
 
-const weightCalcTrueCenter = (freindsList) => {
-  const center = weightCenterPoint(freindsList);
-  let weightedDistanceSum = 0;
-  let totalWeight = 0;
+// const weightCalcTrueCenter = (freindsList) => {
+//   const center = weightCenterPoint(freindsList);
+//   let weightedDistanceSum = 0;
+//   let totalWeight = 0;
 
-  for (let i = 0; i < freindsList.length; i++) {
-    const { position, speed, r } = freindsList[i];
-    const distance = Math.abs(position - center);
+//   for (let i = 0; i < freindsList.length; i++) {
+//     const { position, speed, r } = freindsList[i];
+//     const distance = Math.abs(position - center);
 
-    // Determine if the center is within the range of the current friend
-    if (
-      (position < center && position + r > center) ||
-      (position > center && position - r < center)
-    ) {
-      weightedDistanceSum += distance * speed;
-    } else if (position < center) {
-      weightedDistanceSum += (center - (position + r)) * speed;
-    } else if (position > center) {
-      weightedDistanceSum += (position - r - center) * speed;
-    }
+//     // Determine if the center is within the range of the current friend
+//     if (
+//       (position < center && position + r > center) ||
+//       (position > center && position - r < center)
+//     ) {
+//       weightedDistanceSum += distance * speed;
+//     } else if (position < center) {
+//       weightedDistanceSum += (center - (position + r)) * speed;
+//     } else if (position > center) {
+//       weightedDistanceSum += (position - r - center) * speed;
+//     }
 
-    totalWeight += speed;
-  }
+//     totalWeight += speed;
+//   }
 
-  // Calculate the weighted average distance and round to the nearest integer
-  return Math.round(weightedDistanceSum / totalWeight);
-};
+//   // Calculate the weighted average distance and round to the nearest integer
+//   return Math.round(weightedDistanceSum / totalWeight);
+// };
 
 const calcTrueCenter = (freindsList) => {
   center = weightCenterPoint(freindsList);
@@ -140,3 +140,7 @@ console.log(
     calcTrueCenter(freindsList),
   ),
 );
+
+console.log(weightCenterPoint(freindsList));
+console.log(calcTrueCenter(freindsList));
+console.log(calcRemainingTime(freindsList, calcTrueCenter(freindsList)))

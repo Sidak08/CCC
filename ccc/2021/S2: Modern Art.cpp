@@ -17,8 +17,8 @@ void printVector(const std::vector<T> &vec)
 
 int main()
 {
-    // ios_base::sync_with_stdio(false);
-    // cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     lo m, n, k, goldCount = 0;
 
     cin >> m >> n >> k;

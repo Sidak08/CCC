@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
 #define ll long long
+
 using namespace std;
 
 void calcNum(ll row, ll col) {
-    if ( row > col ) {
+    if (row > col) {
         ll diagnoalNum = (row * row) - (row - 1);
         if (row % 2 == 0) {
             cout << diagnoalNum + (row - col) << "\n";
@@ -14,21 +15,20 @@ void calcNum(ll row, ll col) {
     } else {
         ll diagnoalNum = (col * col) - (col - 1);
         if (col % 2 == 0) {
-            cout << diagnoalNum - (row - col) << "\n";
+            cout << diagnoalNum - ( col - row ) << "\n";
         } else {
-            cout << diagnoalNum + (row - col) << "\n";
+            cout << diagnoalNum + (col - row) << "\n";
         }
     }
 }
 
-int main () {
+int main() {
     ll num;
     cin >> num;
-    for (ll i = 0; i < num; i ++){
+    for (ll i = 0; i < num; i++) {
         ll row, col;
         cin >> row >> col;
         calcNum(row, col);
     }
     return 0;
-
 }

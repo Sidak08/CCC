@@ -27,7 +27,9 @@ vector<int> shortestPath(vector<pair<int,int> > edges, int n, int m, int s, int 
     order.push(s - 1); // Adjust for 0-indexing
     seen[s - 1] = true; // Mark the starting node as seen
 
-    while (!order.empty()) {
+    bool found = false;
+
+    while (!order.empty() || !found) {
         int current = order.front();
         order.pop(); // Pop the current node after processing
 
