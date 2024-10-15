@@ -1,39 +1,28 @@
 #-------------------------------------------------------------------------------------------------------------------
 '''
-Title: 2.2.1 Data types - MAKE
+Title: 2.2.2 Random numbers - Predict and RUN
 Author: Sidak Singh
-Date: 2024-10-05
-Assignment: 2.2.1 Data types - MAKE
+Date: 2024-10-15
+Assignment: 2.2.2 Random numbers - Predict and RUN
  '''
 #-------------------------------------------------------------------------------------------------------------------
 #No Imports
 #-------------------------------------------------------------------------------------------------------------------
 # No global variables
 #-------------------------------------------------------------------------------------------------------------------
-def calcAreaTriangle (base, height):
-  return (base * height) / 2
-
-def takeInput():
-    base = float(input("Enter the base of the triangle: "))
-    height = float(input("Enter the height of the triangle: "))
-
-    print("The area of the triangle is", calcAreaTriangle(base, height))
+#No functions
 #-------------------------------------------------------------------------------------------------------------------
+import random
 
-takeInput()
+print(random.randint(1,5))
+#prints a random number between 1 - 5
 
+num1 = random.randint(1,10)
+
+print("Your number was " + str(num1))
+#prints "Your number was" and a random number between 1 - 10
 #-------------------------------------------------------------------------------------------------------------------
 # Place your test results below
 '''
-Enter the base of the triangle: 6
-Enter the height of the triangle: 5
-The area of the triangle is 15.0
-
-Enter the base of the triangle: 50
-Enter the height of the triangle: 29
-The area of the triangle is 725.0
-
-Enter the base of the triangle: 5.3
-Enter the height of the triangle: 90.468
-The area of the triangle is 239.7402
+No test casses
 '''
