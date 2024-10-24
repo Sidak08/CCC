@@ -37,6 +37,7 @@ Assignment: 2.7 Intro to OOP
 
 # - How to Inherit from another Python class?
 # you use the super() keyword to view methods and items from the parent class
+# This new inherited class now lets you reuse your code from the example class
 # eg:
 # class ExtendedExample(Example):
 #     def __init__(self, text, additional_text):
