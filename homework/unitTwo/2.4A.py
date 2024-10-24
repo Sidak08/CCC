@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------------------------------------------------
 '''
-Title: 2.4 Validation B) Investigate and Modify
+Title: 2.4 Validation A) Predict and Run
 Author: Sidak Singh
 Date: 2024-10-24
-Assignment: 2.4 Validation B) Investigate and Modify
+Assignment: 2.4 Validation A) Predict and Run
 '''
 #-------------------------------------------------------------------------------------------------------------------
 #No Imports
@@ -12,40 +12,23 @@ Assignment: 2.4 Validation B) Investigate and Modify
 #-------------------------------------------------------------------------------------------------------------------
 #No Functions
 #-------------------------------------------------------------------------------------------------------------------
-'''
-Where is the iteration in the code?
-it is the while loop. it checks if num1 is between 50 and 100 and if not it keep asking for a valid input
+correctUserName = "dave" #correct username option
 
-How many conditions are there in the code? What are they?
-The two main conditions are:
-num1 < 50 too small
-num1 > 100 too large
+userName = input("Please enter your username").lower() #asks to enter a username
 
-Where is the nesting in the code?
-in the if statement inside the while loop.
+while userName != correctUserName: # checks if the user name is correct or not
+  userName = input("Username incorrect, please try again.") # ask for another username if the previous one is incorrect
 
-Why are lines 12 and 15 indented?
-they are part of the while loop.
+print("Username accepted.") # print when the correct username has been entered
 
-Why is line 13 indented twice?
-it is inside the if statement which is inside the while loop.
+# Example 2
 
-What would be the impact of swapping the 'or' on line 10 for an 'and'?
-the loop would want a number which is smaller than 50 and bigger than 100; which is not possible so it will not run.
-'''
+num1 = int(input("Enter a number between 1 and 10")) # asks to enter a number between 1 - 10
 
-print("Enter the number of the month you were born (1-12):")
-month = int(input())
+while num1 < 1 or num1 > 10: # check if the number is valid
+  num1 = int(input("Invalid number, please try again")) # if the number is invalid it askes for another number
 
-
-while month < 1 or month > 12:
-    if month < 1:
-        print("Invalid number, too small, try again.")
-    elif month > 12:
-        print("Invalid number, too large, try again.")
-    month = int(input())
-
-print("You entered a valid month:", month)
+print("Input accepted.") #print when the correct number is inputted
 
 '''
 Test Cases
