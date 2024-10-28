@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------------------------------------------------
 '''
-Title: 2.5 Basic Exception Handling D) - Make
+Title: 2.5 Value Errors A) - Predict And Run
 Author: Sidak Singh
-Date: 2024-10-25
-Assignment: 2.5 Basic Exception Handling D) - Make
+Date: 2024-10-28
+Assignment: 2.5 Value Errors A) - Predict And Run
 '''
 #-------------------------------------------------------------------------------------------------------------------
 #No Imports
@@ -12,27 +12,23 @@ Assignment: 2.5 Basic Exception Handling D) - Make
 #-------------------------------------------------------------------------------------------------------------------
 #No Functions
 #-------------------------------------------------------------------------------------------------------------------
-# Task - Make
-
-# Write a program that:
-
-# Assigns a number into a suitable variable
-# Checks that the variable has been assigned before printing it out.
-# Displays an error message if the variable has not been assigned.
-# Displays a success message if the program works correctly.
-
-x = "hi"
+# Task - Predict Run
 
 try:
-  print("success")
-except NameError:
-  print("The Var is not defined")
-except:
-    print("something went wrong")
+    age = int(input("Please enter your age: "))
+    # asks for you age
+except ValueError:
+    print("Hey, that wasn't a number!")
+    # prints for invalid input
+else:
+    print("I see that you are ", age," years old.")
+    # prints for valid input
 
 '''
 Test Cases
-success
+Please enter your age:
+Hey, that wasn't a number!
 
-The Var is not defined
+Please enter your age:
+I see that you are ", age," years old.
 '''
