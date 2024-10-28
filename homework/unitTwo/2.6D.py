@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------------------------------------------------
 '''
-Title: 2.6 Reading From A File -A)Predict And Run
+Title: 2.6 Reading From A File - B) Investigate And Modify
 Author: Sidak Singh
 Date: 2024-10-28
-Assignment: 2.6 Reading From A File -A)Predict And Run
+Assignment: 2.6 Reading From A File - B) Investigate And Modify
 '''
 #-------------------------------------------------------------------------------------------------------------------
 #No Imports
@@ -12,12 +12,35 @@ Assignment: 2.6 Reading From A File -A)Predict And Run
 #-------------------------------------------------------------------------------------------------------------------
 #No Functions
 #-------------------------------------------------------------------------------------------------------------------
+'''
+What is the name of the variable used to store the file contents?
+The variable is bandFile.
 
-myFile = open("singers.txt", "r") #It lets the program acces the elemenets inside the file
-for line in myFile: # Goes through each line
-  print(line) # Prints every line
-myFile.close() # Removes acces to the file
+What does 'r' on line 5 do?
+The 'r' stands for read-only mode.
+
+How many variables are used in the code? What are they called?
+There are two variables used.
+
+What is the file extension of the file used?
+the file extension is .txt.
+
+'''
+file_choice = input("Which file do you want to open? (bands or singers): ").lower()
+file_name = file_choice + ".txt"
+chosenFile = open(file_name, "r")
+for line in chosenFile:
+    print(line)
+chosenFile.close()
 
 '''
 Test Cases
+
+Which file do you want to open? (bands or singers): Bands
+test
+something random
+something else
+
+Which file do you want to open? (bands or singers): test
+FileNotFoundError: [Errno 2] No such file or directory: 'test.txt'
 '''
